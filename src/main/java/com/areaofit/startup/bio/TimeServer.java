@@ -5,9 +5,20 @@ import java.net.Socket;
 
 public class TimeServer {
 
+    // 端口号
+    public static int port = 8080;
+
     public static void main(String[] args) throws Exception {
-        ServerSocket serverSocket = new ServerSocket(8080);
-        System.out.println("BIO Time server is startup, port is 8080");
+        if (args != null && !"".equals(args[0]))
+        {
+            int p = Integer.parseInt(args[0]);
+            if (p > 0)
+            {
+                port = p;
+            }
+        }
+        ServerSocket serverSocket = new ServerSocket(port);
+        System.out.println("BIO Time server is startup, port is " + port);
         try {
             Socket socket;
             while (true) {
